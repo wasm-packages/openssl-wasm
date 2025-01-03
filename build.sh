@@ -1,7 +1,5 @@
 #! /bin/sh
 
-NPROCESSORS=$(getconf NPROCESSORS_ONLN 2>/dev/null || getconf _NPROCESSORS_ONLN 2>/dev/null)
-
 cd openssl || exit 1
 
 env \
@@ -9,10 +7,10 @@ env \
     AR="zig ar" \
     RANLIB="zig ranlib" \
     CC="zig cc --target=wasm32-wasi" \
-    CFLAGS="-Ofast -Werror -Qunused-arguments -Wno-shift-count-overflow" \
+    CFLAGS="-Ofast -Werror -Qunused-arguments -Wno-shift-count-overflow -fPIC" \
     CPPFLAGS="$CPPFLAGS -D_BSD_SOURCE -D_WASI_EMULATED_GETPID -Dgetuid=getpagesize -Dgeteuid=getpagesize -Dgetgid=getpagesize -Dgetegid=getpagesize" \
     CXXFLAGS="-Werror -Qunused-arguments -Wno-shift-count-overflow" \
-    LDFLAGS="-s -lwasi-emulated-getpid" \
+    LDFLAGS="-s -lwasi-emulated-getpid -shared" \
     ./Configure \
     --banner="wasm32-wasi port" \
     no-asm \
@@ -29,9 +27,14 @@ env \
     no-threads \
     no-ui-console \
     no-weak-ssl-ciphers \
+    no-atexit \
+    no-autoload-config \
+    no-autoalginit \
+    no-autoerrinit \
+    no-http \
     wasm32-wasi || exit 1
 
-make "-j${NPROCESSORS}"
+make -j$(nproc)
 
 cd - || exit 1
 

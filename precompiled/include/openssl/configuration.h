@@ -49,6 +49,18 @@ extern "C" {
 # ifndef OPENSSL_NO_ASYNC
 #  define OPENSSL_NO_ASYNC
 # endif
+# ifndef OPENSSL_NO_ATEXIT
+#  define OPENSSL_NO_ATEXIT
+# endif
+# ifndef OPENSSL_NO_AUTOALGINIT
+#  define OPENSSL_NO_AUTOALGINIT
+# endif
+# ifndef OPENSSL_NO_AUTOERRINIT
+#  define OPENSSL_NO_AUTOERRINIT
+# endif
+# ifndef OPENSSL_NO_AUTOLOAD_CONFIG
+#  define OPENSSL_NO_AUTOLOAD_CONFIG
+# endif
 # ifndef OPENSSL_NO_BROTLI
 #  define OPENSSL_NO_BROTLI
 # endif
@@ -106,6 +118,9 @@ extern "C" {
 # ifndef OPENSSL_NO_H3DEMO
 #  define OPENSSL_NO_H3DEMO
 # endif
+# ifndef OPENSSL_NO_HTTP
+#  define OPENSSL_NO_HTTP
+# endif
 # ifndef OPENSSL_NO_KTLS
 #  define OPENSSL_NO_KTLS
 # endif
@@ -117,6 +132,9 @@ extern "C" {
 # endif
 # ifndef OPENSSL_NO_MSAN
 #  define OPENSSL_NO_MSAN
+# endif
+# ifndef OPENSSL_NO_OCSP
+#  define OPENSSL_NO_OCSP
 # endif
 # ifndef OPENSSL_NO_POSIX_IO
 #  define OPENSSL_NO_POSIX_IO
