@@ -6,12 +6,12 @@ index 46094f59..c3db2695 100644
          multilib         => "64",
      },
  
-+    "wasm32-wasi" => {
++    "wasm32-wasi-threads" => {
 +        inherit_from     => [ "BASE_unix" ],
-+        CC               => "zig cc",
-+        CXX              => "zig c++",
-+        cflags           => add("--target=wasm32-wasi"),
-+        cxxflags         => add("--target=wasm32-wasi"),
++        CC               => "turbo cc",
++        CXX              => "turbo cxx",
++        cflags           => add("--target=wasm32-wasi-threads"),
++        cxxflags         => add("--target=wasm32-wasi-threads"),
 +        lib_cppflags     => add("-DL_ENDIAN"),
 +        bn_ops           => "THIRTY_TWO_BIT",
 +    },
